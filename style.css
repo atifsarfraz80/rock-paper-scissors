@@ -1,0 +1,64 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+    background-color: aqua;
+}
+
+.main-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 150px ;
+    
+}
+
+.box{
+    display: flex;
+    align-self: center;
+    align-items: center;
+      flex-direction: column;
+    background-color: antiquewhite;
+    border: 2px solid black;
+    padding: 15px;
+}
+
+.selections{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.selections p{
+    font-weight: 900;
+    font-size: 18px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.rock,.paper,.scissors{
+    font-size: 20px;
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 15%;
+}
+
+.rock:hover, .paper:hover, .scissors:hover {
+    background-color: #0057ff;
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+.scores{
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: -1;
+}
+
+
+
