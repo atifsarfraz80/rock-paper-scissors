@@ -9,7 +9,7 @@ function getComputerChoice(){
 const container = document.querySelector('.main-content');
 
 container.addEventListener('click', (e) => {
-    if (e.target.tagName === 'BUTTON' && HumanScore < 5 && ComputerScore < 5) {
+    if (e.target.tagName === 'BUTTON' && e.target.dataset.choice && HumanScore < 5 && ComputerScore < 5) {
         const humanChoice = e.target.dataset.choice;
         PlayGame(humanChoice);
     }
@@ -50,6 +50,9 @@ function PlayRound(humanChoice, CompChoice){
 }
 
 function declareWinner(winner){
+
+    resultDisplay.textContent = "";
+    
     let p = document.createElement('h2'); 
     p.style.display = 'flex';
     p.style.justifyContent = 'center';
@@ -64,9 +67,42 @@ function declareWinner(winner){
     }
     
     document.querySelector('.box').appendChild(p); 
+
+    replayGame();
+}
+
+function replayGame()
+{
+    let div = document.createElement('div');
+
+    let button = document.createElement('button');
+    button.style.display = 'flex';
+    button.style.justifyContent = 'center';
+    button.style.alignItems = 'flex-start';
+    button.textContent = 'Restart Game';
+    button.style.borderRadius = '15%';
+    button.addEventListener('click', () => {
+        HumanScore = 0;
+        ComputerScore = 0;
+        
+        document.querySelector('.humantext').textContent = `Human Score : 0`;
+        document.querySelector('.computertext').textContent = `Computer Score : 0`;
+        
+        resultDisplay.textContent = "";
+        
+        const box = document.querySelector('.box');
+        const winnerHeading = box.querySelector('h2');
+        if (winnerHeading) winnerHeading.remove();
+        
+        div.remove(); 
+    });
+
+    div.appendChild(button);
+    document.querySelector('.scores').appendChild(div);
 }
 
 function PlayGame(humanchoice){
+    if (HumanScore >= 5 || ComputerScore >= 5) return;
     const computerSelection = getComputerChoice();
     PlayRound(humanchoice, computerSelection);
     if (HumanScore === 5) {
